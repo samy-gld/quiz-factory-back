@@ -1,0 +1,45 @@
+# src/App/Resources/config/serialization.yaml
+App\Entity\Quiz:
+    attributes:
+        id:
+            groups: ['quizzes', 'quiz', 'question']
+        name:
+            groups: ['quizzes', 'quiz', 'question']
+        description:
+            groups: ['quizzes', 'quiz', 'question']
+        status:
+            groups: ['quizzes', 'quiz', 'question']
+        createdAt:
+            groups: ['quizzes', 'quiz', 'question']
+        lastUpdate:
+            groups: ['quizzes', 'quiz', 'question']
+        questions:
+            groups: ['quiz']
+
+App\Entity\Question:
+    attributes:
+        id:
+            groups: ['quiz', 'question', 'proposition']
+        label:
+            groups: ['quiz', 'question', 'proposition']
+        type:
+            groups: ['quiz', 'question', 'proposition']
+        position:
+            groups: ['quiz', 'question', 'proposition']
+        quiz:
+            groups: []
+        propositions:
+            groups: ['quiz', 'question']
+
+App\Entity\Proposition:
+    attributes:
+        id:
+            groups: ['quiz', 'question', 'proposition']
+        label:
+            groups: ['quiz', 'question', 'proposition']
+        wrightAnswer:
+            groups: ['quiz', 'question', 'proposition']
+        position:
+            groups: ['quiz', 'question', 'proposition']
+        question:
+            groups: []

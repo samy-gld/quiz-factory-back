@@ -1,0 +1,41 @@
+App\Entity\Quiz:
+    constraints:
+        - App\Validator\Constraints\AlmostOneQuestion: ~
+    properties:
+        name:
+            - NotNull: ~
+            - Type: string
+            - Length:
+                max: 30
+        description:
+            - Type: string
+            - Length:
+                max: 250
+        status:
+            - NotNull: ~
+            - Choice:
+                choices: [pending, finalized]
+
+App\Entity\Question:
+    properties:
+        label:
+            - NotNull: ~
+            - Type: string
+        type:
+            - NotNull: ~
+            - Choice:
+                  choices: [duo, carre, qcm]
+        position:
+            - NotNull: ~
+            - Type: integer
+
+
+App\Entity\Proposition:
+    properties:
+        label:
+            - Type: string
+        wrightAnswer:
+            - Type: bool
+        position:
+            - NotNull: ~
+            - Type: integer
