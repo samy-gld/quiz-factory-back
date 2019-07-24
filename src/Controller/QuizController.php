@@ -8,6 +8,8 @@ use App\Entity\Quiz;
 use App\Form\QuizType;
 use App\Repository\QuizRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityNotFoundException;
+use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -40,7 +42,8 @@ class QuizController extends AbstractController
     public function getQuizzesAction(QuizRepository $quizRepo)
     {
         $quizzes = $quizRepo->findAll();
-        if (empty($quizzes)) return new JsonResponse(['message' => 'Quiz not found'], Response::HTTP_NOT_FOUND);
+        if (empty($quizzes)) return $this->quizNotFound();
+
         return $quizzes;
     }
 
@@ -55,7 +58,7 @@ class QuizController extends AbstractController
     {
         $quiz = $quizRepo->find($request->get('id'));
 
-        if (empty($quiz)) return new JsonResponse(['message' => 'Quiz not found'], Response::HTTP_NOT_FOUND);
+        if (empty($quiz)) return $this->quizNotFound();
 
         return $quiz;
     }
@@ -111,7 +114,7 @@ class QuizController extends AbstractController
         $quiz = $quizRepo->find($request->get('id'));
 
         if (empty($quiz)) {
-            return new JsonResponse(['message' => 'Quiz not found'], Response::HTTP_NOT_FOUND);
+            return $this->quizNotFound();
         }
 
         $form = $this->createForm(QuizType::class, $quiz);
@@ -131,14 +134,24 @@ class QuizController extends AbstractController
      * @Rest\Delete(path="/quiz/{id}")
      * @param Request $request
      * @param QuizRepository $quizRepo
+     * @return View
+     * @throws EntityNotFoundException
      */
-    public function removequizAction(Request $request, QuizRepository $quizRepo)
+    public function removeQuizAction(Request $request, QuizRepository $quizRepo)
     {
         $quiz = $quizRepo->find($request->get('id'));
 
-        if ($quiz) {
-            $this->em->remove($quiz);
-            $this->em->flush();
+        if (empty($quiz)) {
+            return $this->quizNotFound();
         }
+
+        $this->em->remove($quiz);
+        $this->em->flush();
+    }
+
+    private function quizNotFound()
+    {
+        // return View::create(['message' => 'Quiz not found'], Response::HTTP_NOT_FOUND);
+        throw new EntityNotFoundException('Quiz not found');
     }
 }

@@ -2,30 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Proposition;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PropositionType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', IntegerType::class, ['required' => false])
-            ->add('label', TextType::class, ['empty_data' => ''])
-            ->add('wrightAnswer', CheckboxType::class)
-            ->add('position', IntegerType::class)
+            ->add('username', TextType::class)
+            ->add('email', TextType::class)
+            ->add('plainPassword', TextType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Proposition::class,
+            'data_class' => User::class,
             'csrf_protection' => false
         ]);
     }

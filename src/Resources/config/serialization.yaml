@@ -43,3 +43,12 @@ App\Entity\Proposition:
             groups: ['quiz', 'question', 'proposition']
         question:
             groups: []
+
+App\Entity\User:
+    attributes:
+        id:
+            groups: ['user']
+        username:
+            groups: ['user']
+        email:
+            groups: ['user']

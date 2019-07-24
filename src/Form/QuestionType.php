@@ -18,7 +18,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('id', IntegerType::class, ['required' => false])
-            ->add('label', TextType::class)
+            ->add('label', TextType::class, ['empty_data' => ''])
             ->add('type', TextType::class)
             ->add('position', IntegerType::class)
             ->add('propositions', CollectionType::class, ['required' => false])

@@ -1,0 +1,655 @@
+{
+  "error": {
+    "code": 404,
+    "message": "Not Found",
+    "exception": [
+      {
+        "message": "No route found for \"POST \/api\/login\"",
+        "class": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
+        "trace": [
+          {
+            "namespace": "",
+            "short_class": "",
+            "class": "",
+            "type": "",
+            "function": "",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/EventListener\/RouterListener.php",
+            "line": 141,
+            "args": []
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel\\EventListener",
+            "short_class": "RouterListener",
+            "class": "Symfony\\Component\\HttpKernel\\EventListener\\RouterListener",
+            "type": "->",
+            "function": "onKernelRequest",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/Debug\/WrappedListener.php",
+            "line": 126,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Debug\\TraceableEventDispatcher"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher\\Debug",
+            "short_class": "WrappedListener",
+            "class": "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener",
+            "type": "->",
+            "function": "__invoke",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/EventDispatcher.php",
+            "line": 260,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Debug\\TraceableEventDispatcher"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher",
+            "short_class": "EventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\EventDispatcher",
+            "type": "->",
+            "function": "doDispatch",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/EventDispatcher.php",
+            "line": 235,
+            "args": [
+              [
+                "array",
+                [
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ]
+                ]
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher",
+            "short_class": "EventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\EventDispatcher",
+            "type": "->",
+            "function": "callListeners",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/EventDispatcher.php",
+            "line": 75,
+            "args": [
+              [
+                "array",
+                [
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ]
+                ]
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher",
+            "short_class": "EventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\EventDispatcher",
+            "type": "->",
+            "function": "dispatch",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/Debug\/TraceableEventDispatcher.php",
+            "line": 168,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher\\Debug",
+            "short_class": "TraceableEventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\Debug\\TraceableEventDispatcher",
+            "type": "->",
+            "function": "dispatch",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/HttpKernel.php",
+            "line": 127,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "HttpKernel",
+            "class": "Symfony\\Component\\HttpKernel\\HttpKernel",
+            "type": "->",
+            "function": "handleRaw",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/HttpKernel.php",
+            "line": 68,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ],
+              [
+                "integer",
+                1
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "HttpKernel",
+            "class": "Symfony\\Component\\HttpKernel\\HttpKernel",
+            "type": "->",
+            "function": "handle",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/Kernel.php",
+            "line": 198,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ],
+              [
+                "integer",
+                1
+              ],
+              [
+                "boolean",
+                true
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "Kernel",
+            "class": "Symfony\\Component\\HttpKernel\\Kernel",
+            "type": "->",
+            "function": "handle",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/public\/index.php",
+            "line": 25,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "message": "No routes found for \"\/api\/login\".",
+        "class": "Symfony\\Component\\Routing\\Exception\\ResourceNotFoundException",
+        "trace": [
+          {
+            "namespace": "",
+            "short_class": "",
+            "class": "",
+            "type": "",
+            "function": "",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/routing\/Matcher\/Dumper\/CompiledUrlMatcherTrait.php",
+            "line": 70,
+            "args": []
+          },
+          {
+            "namespace": "Symfony\\Component\\Routing\\Matcher",
+            "short_class": "CompiledUrlMatcher",
+            "class": "Symfony\\Component\\Routing\\Matcher\\CompiledUrlMatcher",
+            "type": "->",
+            "function": "match",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/routing\/Matcher\/UrlMatcher.php",
+            "line": 108,
+            "args": [
+              [
+                "string",
+                "\/api\/login"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\Routing\\Matcher",
+            "short_class": "UrlMatcher",
+            "class": "Symfony\\Component\\Routing\\Matcher\\UrlMatcher",
+            "type": "->",
+            "function": "matchRequest",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/routing\/Router.php",
+            "line": 276,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\Routing",
+            "short_class": "Router",
+            "class": "Symfony\\Component\\Routing\\Router",
+            "type": "->",
+            "function": "matchRequest",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/EventListener\/RouterListener.php",
+            "line": 117,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel\\EventListener",
+            "short_class": "RouterListener",
+            "class": "Symfony\\Component\\HttpKernel\\EventListener\\RouterListener",
+            "type": "->",
+            "function": "onKernelRequest",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/Debug\/WrappedListener.php",
+            "line": 126,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Debug\\TraceableEventDispatcher"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher\\Debug",
+            "short_class": "WrappedListener",
+            "class": "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener",
+            "type": "->",
+            "function": "__invoke",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/EventDispatcher.php",
+            "line": 260,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Debug\\TraceableEventDispatcher"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher",
+            "short_class": "EventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\EventDispatcher",
+            "type": "->",
+            "function": "doDispatch",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/EventDispatcher.php",
+            "line": 235,
+            "args": [
+              [
+                "array",
+                [
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ]
+                ]
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher",
+            "short_class": "EventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\EventDispatcher",
+            "type": "->",
+            "function": "callListeners",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/EventDispatcher.php",
+            "line": 75,
+            "args": [
+              [
+                "array",
+                [
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ],
+                  [
+                    "object",
+                    "Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener"
+                  ]
+                ]
+              ],
+              [
+                "string",
+                "kernel.request"
+              ],
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher",
+            "short_class": "EventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\EventDispatcher",
+            "type": "->",
+            "function": "dispatch",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/event-dispatcher\/Debug\/TraceableEventDispatcher.php",
+            "line": 168,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\EventDispatcher\\Debug",
+            "short_class": "TraceableEventDispatcher",
+            "class": "Symfony\\Component\\EventDispatcher\\Debug\\TraceableEventDispatcher",
+            "type": "->",
+            "function": "dispatch",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/HttpKernel.php",
+            "line": 127,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpKernel\\Event\\RequestEvent"
+              ],
+              [
+                "string",
+                "kernel.request"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "HttpKernel",
+            "class": "Symfony\\Component\\HttpKernel\\HttpKernel",
+            "type": "->",
+            "function": "handleRaw",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/HttpKernel.php",
+            "line": 68,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ],
+              [
+                "integer",
+                1
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "HttpKernel",
+            "class": "Symfony\\Component\\HttpKernel\\HttpKernel",
+            "type": "->",
+            "function": "handle",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/vendor\/symfony\/http-kernel\/Kernel.php",
+            "line": 198,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ],
+              [
+                "integer",
+                1
+              ],
+              [
+                "boolean",
+                true
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "Kernel",
+            "class": "Symfony\\Component\\HttpKernel\\Kernel",
+            "type": "->",
+            "function": "handle",
+            "file": "\/mnt\/c\/Dev\/Quizzy\/public\/index.php",
+            "line": 25,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

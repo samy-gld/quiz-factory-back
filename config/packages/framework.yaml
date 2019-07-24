@@ -28,3 +28,9 @@ framework:
         mapping:
             path:
                 - '%kernel.project_dir%/src/Resources/config/validation.yaml'
+
+    # Enable translator
+    translator: ~
+
+    templating:
+        engines: ['twig', 'php']

@@ -39,3 +39,13 @@ App\Entity\Proposition:
         position:
             - NotNull: ~
             - Type: integer
+
+App\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [email]
+            message: "HTTP_CONFLICT"
+    properties:
+        email:
+            - Email:
+                message: Not a valid email.

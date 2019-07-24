@@ -9,6 +9,7 @@ use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -158,11 +159,13 @@ class QuestionController extends AbstractController
 
     private function quizNotFound()
     {
-        return View::create(['message' => 'Quiz not found'], Response::HTTP_NOT_FOUND);
+        //return View::create(['message' => 'Quiz not found'], Response::HTTP_NOT_FOUND);
+        throw new EntityNotFoundException('Quiz not found');
     }
 
     private function questionNotFound()
     {
-        return View::create(['message' => 'Question not found'], Response::HTTP_NOT_FOUND);
+        //return View::create(['message' => 'Question not found'], Response::HTTP_NOT_FOUND);
+        throw new EntityNotFoundException('Question not found');
     }
 }

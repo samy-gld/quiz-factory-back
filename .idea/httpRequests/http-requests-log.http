@@ -1,0 +1,18 @@
+POST http://localhost:8000/api/login_check?username=coco&password=lapin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-07-21T125646.404.json
+
+###
+
+POST http://localhost:8000/api/login?username=coco&password=lapin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-07-21T125549.404.json
+
+###
+

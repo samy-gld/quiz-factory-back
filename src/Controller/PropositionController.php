@@ -10,6 +10,7 @@ use App\Form\PropositionType;
 use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -155,11 +156,13 @@ class PropositionController extends AbstractController
 
     private function questionNotFound()
     {
-        return View::create(['message' => 'Question not found'], Response::HTTP_NOT_FOUND);
+        //return View::create(['message' => 'Question not found'], Response::HTTP_NOT_FOUND);
+        throw new EntityNotFoundException('Question not found');
     }
 
     private function propositionNotFound()
     {
-        return View::create(['message' => 'Proposition not found'], Response::HTTP_NOT_FOUND);
+        //return View::create(['message' => 'Proposition not found'], Response::HTTP_NOT_FOUND);
+        throw new EntityNotFoundException('Proposition not found');
     }
 }

@@ -1,3 +1,8 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# Global prefix for the API
+quiz-factory:
+    resource: "../src/Controller"
+    prefix: /api
+
+# Authentication:
+api_login_check:
+    path: /api/login_check
