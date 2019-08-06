@@ -39,7 +39,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/framework-extra-bundle" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/config" />
@@ -56,10 +55,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/flex" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/form" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/framework-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/google-mailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/intl" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/maker-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mime" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
@@ -83,7 +84,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/serializer-pack" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/service-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/stopwatch" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/swiftmailer-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/templating" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation-contracts" />

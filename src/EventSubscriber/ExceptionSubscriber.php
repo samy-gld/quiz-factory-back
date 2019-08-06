@@ -4,11 +4,9 @@
 namespace App\EventSubscriber;
 
 
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Validator\ConstraintViolation;
 
 class ExceptionSubscriber implements EventSubscriberInterface
 {
@@ -34,11 +32,11 @@ class ExceptionSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            ConstraintViolation::class => ['constraintValidationResponse']
+            UniqueConstraintViolationException::class => ['uniqueEntityResponse']
         ];
     }
 
-    public function constraintValidationResponse(ExceptionEvent $event)
+    public function uniqueEntityResponse(ExceptionEvent $event)
     {
         $exception = $event->getException();
         dump($exception->getMessage());

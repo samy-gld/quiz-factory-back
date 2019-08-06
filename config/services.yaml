@@ -28,3 +28,6 @@ services:
     App\EventListener\preUpdate:
             tags:
                 - { name: doctrine.event_listener, event: preUpdate }
+
+    # Override Controller RegistrationController from FOSUserBundle
+    FOS\UserBundle\Form\Factory\FactoryInterface: '@fos_user.registration.form.factory'

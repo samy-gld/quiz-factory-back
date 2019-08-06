@@ -1,0 +1,11 @@
+{# templates/emails/registration.html.twig #}
+<h1>Bienvenue {{ email.toName }}!</h1>
+
+<p>
+    Vous vous êtes inscrit sur Quiz Factory en tant que {{ username }} avec l'adresse email :
+</p>
+<p><code>{{ email.to[0].address }}</code></p>
+
+<p>
+    <a href="{{ url }}">Veuillez cliquez sur ce lien afin d'activer votre compte</a>
+</p>

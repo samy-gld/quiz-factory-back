@@ -41,10 +41,6 @@ App\Entity\Proposition:
             - Type: integer
 
 App\Entity\User:
-    constraints:
-        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
-            fields: [email]
-            message: "HTTP_CONFLICT"
     properties:
         email:
             - Email:

@@ -2,6 +2,20 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: App\Entity\User
+    service:
+        mailer: fos_user.mailer.default
     from_email:
         address: "contact@quiz-factory.com"
         sender_name: "Quiz Factory Post"
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address:        inscription@quiz-factory.com
+                sender_name:    Quiz Factory - Inscription
+            template: '@FOSUser/Registration/email.txt.twig'
+    resetting:
+        email:
+            from_email:
+                address:        reinitialisation@quiz-factory.com
+                sender_name:    Quiz Factory - Réinitilaistion
