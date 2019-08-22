@@ -80,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+            <state relative-caret-position="282">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
             </state>
           </provider>
         </entry>
@@ -622,18 +622,18 @@
       <workItem from="1565886541144" duration="14932000" />
       <workItem from="1566040490915" duration="1668000" />
       <workItem from="1566304833312" duration="627000" />
-      <workItem from="1566467032805" duration="1875000" />
+      <workItem from="1566467032805" duration="1887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244406000" />
+    <option name="totallyTimeSpent" value="244418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18947369" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18947369" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -646,7 +646,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" weight="0.32931036" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49716598" visible="true" weight="0.29482758" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49716598" visible="true" weight="0.29482758" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.502834" side_tool="true" weight="0.3224138" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.24310344" />
       <window_info anchor="bottom" id="REST Client" order="13" show_stripe_button="false" weight="0.43793103" />
@@ -1065,8 +1065,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        <state relative-caret-position="282">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
