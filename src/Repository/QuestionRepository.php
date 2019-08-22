@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Question;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +20,28 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    // /**
-    //  * @return Question[] Returns an array of Question objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findOneQuestion(int $questionId, int $userId)
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('q.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('question')
+            ->leftJoin('question.quiz', 'quiz')
+            ->andWhere('question.id = :id')
+            ->setParameter('id', $questionId)
+            ->andWhere('quiz.user = :userId')
+            ->setParameter('userId', $userId)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Question
+    public function findQuestionsForQuiz(int $quizId, int $userId)
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
+        return $this->createQueryBuilder('que')
+            ->leftJoin('que.quiz', 'qui')
+            ->leftJoin('que.propositions', 'p')
+            ->andWhere('qui.id = :id')
+            ->setParameter('id', $quizId)
+            ->andWhere('qui.user = :userId')
+            ->setParameter('userId', $userId)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }

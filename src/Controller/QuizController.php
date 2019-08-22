@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,28 +23,33 @@ class QuizController extends AbstractController
      * @var ObjectManager
      */
     private $em;
+    /**
+     * @var QuizRepository
+     */
+    private $quizRepo;
 
     /**
      * quizController constructor.
      * @param ObjectManager $em
+     * @param QuizRepository $quizRepo
      */
-    public function __construct(ObjectManager $em)
+    public function __construct(ObjectManager $em, QuizRepository $quizRepo)
     {
         $this->em = $em;
+        $this->quizRepo = $quizRepo;
     }
 
     /**
      * @Rest\View(serializerGroups={"quizzes"})
      * @Rest\Get(path="/quiz")
-     * @param Request $request
-     * @param QuizRepository $quizRepo
      * @return object|JsonResponse|null
+     * @throws EntityNotFoundException
      */
-    public function getQuizzesAction(QuizRepository $quizRepo)
+    public function getQuizzesAction()
     {
-        $quizzes = $quizRepo->findAll();
+        $user = $this->getUser();
+        $quizzes = $user->getQuizzes();
         if (empty($quizzes)) return $this->quizNotFound();
-
         return $quizzes;
     }
 
@@ -51,12 +57,17 @@ class QuizController extends AbstractController
      * @Rest\View(serializerGroups={"quiz"})
      * @Rest\Get(path="/quiz/{id}", name="quiz_one")
      * @param Request $request
-     * @param QuizRepository $quizRepo
      * @return object|JsonResponse|null
+     * @throws EntityNotFoundException
      */
-    public function getQuizAction(Request $request, QuizRepository $quizRepo)
+    public function getQuizAction(Request $request)
     {
-        $quiz = $quizRepo->find($request->get('id'));
+        $quiz = $this->quizRepo->findOneBy([
+            'id' => $request->get('id'),
+            'user' => $this->getUser()->getId()
+        ]);
+
+        // $quiz = $this->quizRepo->findOneQuiz($request->get('id'), $this->getUser()->getId());
 
         if (empty($quiz)) return $this->quizNotFound();
 
@@ -67,7 +78,7 @@ class QuizController extends AbstractController
      * @Rest\View(statusCode=Response::HTTP_CREATED, serializerGroups={"quiz"})
      * @Rest\Post(path="/quiz", options={})
      * @param Request $request
-     * @return Quiz|\Symfony\Component\Form\FormInterface
+     * @return Quiz|FormInterface
      */
     public function postQuizAction(Request $request)
     {
@@ -76,6 +87,7 @@ class QuizController extends AbstractController
         $form->submit($request->request->all()); // Validation des données
 
         if ($form->isValid()) {
+            $quiz->setUser($this->getUser());
             $this->em->persist($quiz);
             $this->em->flush();
             return $quiz;
@@ -87,6 +99,9 @@ class QuizController extends AbstractController
     /**
      * @Rest\View(serializerGroups={"quiz"})
      * @Rest\Put("/quiz/{id}")
+     * @param Request $request
+     * @return FormInterface|JsonResponse|null
+     * @throws EntityNotFoundException
      */
     public function updateQuizAction(Request $request)
     {
@@ -96,6 +111,9 @@ class QuizController extends AbstractController
     /**
      * @Rest\View(serializerGroups={"quiz"})
      * @Rest\Patch("/quiz/{id}")
+     * @param Request $request
+     * @return FormInterface|JsonResponse|null
+     * @throws EntityNotFoundException
      */
     public function patchQuizAction(Request $request)
     {
@@ -106,12 +124,15 @@ class QuizController extends AbstractController
     /**
      * @param Request $request
      * @param $clearMissing
-     * @return \Symfony\Component\Form\FormInterface|JsonResponse|null
+     * @return FormInterface|JsonResponse|null
+     * @throws EntityNotFoundException
      */
     public function updateQuiz(Request $request, $clearMissing)
     {
-        $quizRepo = $this->getDoctrine()->getRepository(Quiz::class);
-        $quiz = $quizRepo->find($request->get('id'));
+        $quiz = $this->quizRepo->findOneBy([
+            'id' => $request->get('id'),
+            'user' => $this->getUser()->getId()
+        ]);
 
         if (empty($quiz)) {
             return $this->quizNotFound();
@@ -133,13 +154,15 @@ class QuizController extends AbstractController
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
      * @Rest\Delete(path="/quiz/{id}")
      * @param Request $request
-     * @param QuizRepository $quizRepo
      * @return View
      * @throws EntityNotFoundException
      */
-    public function removeQuizAction(Request $request, QuizRepository $quizRepo)
+    public function removeQuizAction(Request $request)
     {
-        $quiz = $quizRepo->find($request->get('id'));
+        $quiz = $this->quizRepo->findOneBy([
+            'id' => $request->get('id'),
+            'user' => $this->getUser()->getId()
+        ]);
 
         if (empty($quiz)) {
             return $this->quizNotFound();

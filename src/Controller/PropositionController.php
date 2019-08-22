@@ -5,7 +5,6 @@ namespace App\Controller;
 
 
 use App\Entity\Proposition;
-use App\Entity\Question;
 use App\Form\PropositionType;
 use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
@@ -14,6 +13,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,27 +24,40 @@ class PropositionController extends AbstractController
      * @var ObjectManager
      */
     private $em;
+    /**
+     * @var PropositionRepository
+     */
+    private $propositionRepo;
+    /**
+     * @var QuestionRepository
+     */
+    private $questionRepo;
 
     /**
      * PropositionController constructor.
      * @param ObjectManager $em
+     * @param PropositionRepository $propositionRepo
+     * @param QuestionRepository $questionRepo
      */
-    public function __construct(ObjectManager $em)
+    public function __construct(ObjectManager $em, PropositionRepository $propositionRepo, QuestionRepository $questionRepo)
     {
         $this->em = $em;
+        $this->propositionRepo = $propositionRepo;
+        $this->questionRepo = $questionRepo;
     }
 
     /**
      * @Rest\View(serializerGroups={"proposition"})
      * @Rest\Get(path="/proposition/{id}")
      * @param Request $request
-     * @param PropositionRepository $propositionRepo
      * @return View
+     * @throws EntityNotFoundException
      */
-    public function getPropositionAction(Request $request, PropositionRepository $propositionRepo)
+    public function getPropositionAction(Request $request)
     {
-        $proposition = $propositionRepo->find($request->get('id'));
-        if (empty($proposition)){
+        $proposition = $this->propositionRepo->find($request->get('id'));
+
+        if (empty($proposition) || $proposition->getQuestion()->getquiz()->getUser() !== $this->getUser()){
             return $this->questionNotFound();
         }
 
@@ -55,35 +68,36 @@ class PropositionController extends AbstractController
      * @Rest\View(serializerGroups={"proposition"})
      * @Rest\Get(path="/question/{id}/propositions")
      * @param Request $request
-     * @param QuestionRepository $questionRepo
      * @return View
+     * @throws EntityNotFoundException
      */
-    public function getPropositionsAction(Request $request, questionRepository $questionRepo)
+    public function getPropositionsAction(Request $request)
     {
-        $question = $questionRepo->find($request->get('id'));
+        $question = $this->questionRepo->findOneQuestion($request->get('id'), $this->getUser()->getId());
 
-        if (empty($question)){
+        if (empty($question) || $question[0]->getQuiz()->getUser() !== $this->getUser()){
             return $this->questionNotFound();
         }
 
-        return $question->getPropositions();
+        return $question[0]->getPropositions();
     }
+
     /**
      * @Rest\View(statusCode=Response::HTTP_CREATED, serializerGroups={"proposition"})
      * @Rest\Post(path="/question/{id}/proposition")
      * @param Request $request
-     * @param QuestionRepository $questionRepo
      * @return View
+     * @throws EntityNotFoundException
      */
-    public function postPropositionAction(Request $request, QuestionRepository $questionRepo)
+    public function postPropositionAction(Request $request)
     {
-        $question = $questionRepo->find($request->get('id'));
-        if (empty($question)){
+        $question = $this->questionRepo->findOneQuestion($request->get('id'), $this->getUser()->getId());
+        if (empty($question) || $question[0]->getQuiz()->getUser() !== $this->getUser()){
             return $this->questionNotFound();
         }
 
         $proposition = new Proposition();
-        $proposition->setQuestion($question);
+        $proposition->setQuestion($question[0]);
         $form = $this->createForm(PropositionType::class, $proposition);
         $form->submit($request->request->all());
         if ($form->isValid()){
@@ -98,6 +112,9 @@ class PropositionController extends AbstractController
     /**
      * @Rest\View(serializerGroups={"proposition"})
      * @Rest\Put("/proposition/{id}")
+     * @param Request $request
+     * @return FormInterface|JsonResponse
+     * @throws EntityNotFoundException
      */
     public function updatePropositionAction(Request $request)
     {
@@ -107,6 +124,9 @@ class PropositionController extends AbstractController
     /**
      * @Rest\View(serializerGroups={"proposition"})
      * @Rest\Patch("/proposition/{id}")
+     * @param Request $request
+     * @return FormInterface|JsonResponse
+     * @throws EntityNotFoundException
      */
     public function patchPropositionAction(Request $request)
     {
@@ -116,19 +136,19 @@ class PropositionController extends AbstractController
     /**
      * @param Request $request
      * @param $clearMissing
-     * @return \Symfony\Component\Form\FormInterface|JsonResponse
+     * @return FormInterface|JsonResponse
+     * @throws EntityNotFoundException
      */
     public function updateProposition(Request $request, $clearMissing)
     {
-        $propositionRepo = $this->getDoctrine()->getRepository(Proposition::class);
-        $proposition = $propositionRepo->find($request->get('id'));
+        $proposition = $this->propositionRepo->find($request->get('id'));
 
-        if (empty($proposition)) {
-            return new JsonResponse(['message' => 'Proposition not found'], Response::HTTP_NOT_FOUND);
+        if (empty($proposition) || $proposition->getQuestion()->getquiz()->getUser() !== $this->getUser()){
+            return $this->propositionNotFound();
         }
 
         $form = $this->createForm(PropositionType::class, $proposition);
-        $form->submit($request->request->all(), $clearMissing); // Validation des données
+        $form->submit($request->request->all(), $clearMissing);
 
         if ($form->isValid()) {
             $this->em->merge($proposition);
@@ -142,13 +162,12 @@ class PropositionController extends AbstractController
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
      * @Rest\Delete(path="/proposition/{id}")
      * @param Request $request
-     * @param PropositionRepository $propositionRepo
      * @return void
      */
-    public function removePropositionAction(Request $request, PropositionRepository $propositionRepo)
+    public function removePropositionAction(Request $request)
     {
-        $proposition = $propositionRepo->find($request->get('id'));
-        if ($proposition) {
+        $proposition = $this->propositionRepo->find($request->get('id'));
+        if ($proposition && $proposition->getQuestion()->getquiz()->getUser() === $this->getUser()) {
             $this->em->remove($proposition);
             $this->em->flush();
         }

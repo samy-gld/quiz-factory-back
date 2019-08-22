@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
+ * @UniqueEntity(fields={"quiz", "position"}, message="A question already exists at this position")
  */
 class Question
 {
@@ -35,7 +37,8 @@ class Question
     private $quiz;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Proposition", mappedBy="question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Proposition", mappedBy="question", orphanRemoval=true, fetch="EAGER")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $propositions;
 

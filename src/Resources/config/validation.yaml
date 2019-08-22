@@ -1,26 +1,31 @@
 App\Entity\Quiz:
     constraints:
         - App\Validator\Constraints\AlmostOneQuestion: ~
+        - App\Validator\Constraints\DisableQuizFinalized: ~
     properties:
         name:
             - NotNull: ~
             - Type: string
             - Length:
-                max: 30
+                max: 40
         description:
             - Type: string
             - Length:
-                max: 250
+                max: 110
         status:
             - NotNull: ~
             - Choice:
                 choices: [pending, finalized]
 
 App\Entity\Question:
+    constraints:
+        - App\Validator\Constraints\DisableQuizFinalized: ~
     properties:
         label:
             - NotNull: ~
             - Type: string
+            - Length:
+                max: 300
         type:
             - NotNull: ~
             - Choice:
@@ -29,11 +34,14 @@ App\Entity\Question:
             - NotNull: ~
             - Type: integer
 
-
 App\Entity\Proposition:
+    constraints:
+        - App\Validator\Constraints\DisableQuizFinalized: ~
     properties:
         label:
             - Type: string
+            - Length:
+                max: 150
         wrightAnswer:
             - Type: bool
         position:

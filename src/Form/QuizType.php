@@ -29,8 +29,10 @@ class QuizType extends AbstractType
             /* On remplie le champ createdAt avec la date du jour */
             ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
                 $data = $event->getData();
-                $data["createdAt"] = date('Y-m-d H:i:s');
-                $event->setData($data);
+                if (!isset($data["createdAt"])) {
+                    $data["createdAt"] = date('Y-m-d H:i:s');
+                    $event->setData($data);
+                }
             })
         ;
 }

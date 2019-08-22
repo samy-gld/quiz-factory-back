@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,26 +25,32 @@ class QuestionController extends AbstractController
      * @var ObjectManager
      */
     private $em;
+    /**
+     * @var QuestionRepository
+     */
+    private $questionRepo;
 
     /**
      * QuestionController constructor.
      * @param ObjectManager $em
+     * @param QuestionRepository $questionRepo
      */
-    public function __construct(ObjectManager $em)
+    public function __construct(ObjectManager $em, QuestionRepository $questionRepo)
     {
         $this->em = $em;
+        $this->questionRepo = $questionRepo;
     }
 
     /**
      * @Rest\View(serializerGroups={"question"})
      * @Rest\Get(path="/question/{id}")
      * @param Request $request
-     * @param QuestionRepository $questionRepo
      * @return View
+     * @throws EntityNotFoundException
      */
-    public function getQuestionAction(Request $request, QuestionRepository $questionRepo)
+    public function getQuestionAction(Request $request)
     {
-        $question = $questionRepo->find($request->get('id'));
+        $question = $this->questionRepo->findOneQuestion($request->get('id'), $this->getUser()->getId());
         if (empty($question)){
             return $this->questionNotFound();
         }
@@ -55,18 +62,17 @@ class QuestionController extends AbstractController
      * @Rest\View(serializerGroups={"question"})
      * @Rest\Get(path="/quiz/{id}/questions")
      * @param Request $request
-     * @param QuizRepository $quizRepo
      * @return View
+     * @throws EntityNotFoundException
      */
-    public function getQuestionsAction(Request $request, QuizRepository $quizRepo)
+    public function getQuestionsAction(Request $request)
     {
-        $quiz = $quizRepo->find($request->get('id'));
-
-        if (empty($quiz)){
-            return $this->quizNotFound();
+        $questions = $this->questionRepo->findQuestionsForQuiz($request->get('id'), $this->getUser()->getId());
+        if (empty($questions)){
+            return $this->questionNotFound();
         }
 
-        return $quiz->getQuestions();
+        return $questions;
     }
 
     /**
@@ -74,11 +80,15 @@ class QuestionController extends AbstractController
      * @Rest\Post(path="quiz/{id}/question")
      * @param Request $request
      * @param QuizRepository $quizRepo
-     * @return View|\Symfony\Component\Form\FormInterface
+     * @return View|FormInterface
+     * @throws EntityNotFoundException
      */
     public function postQuestionAction(Request $request, QuizRepository $quizRepo)
     {
-        $quiz = $quizRepo->find($request->get('id'));
+        $quiz = $quizRepo->findOneBy([
+            'id' => $request->get('id'),
+            'user' => $this->getUser()->getId()
+        ]);
         if (empty($quiz)){
             return $this->quizNotFound();
         }
@@ -100,6 +110,8 @@ class QuestionController extends AbstractController
     /**
      * @Rest\View(serializerGroups={"question"})
      * @Rest\Put("/question/{id}")
+     * @param Request $request
+     * @return FormInterface|JsonResponse
      */
     public function updateQuestionAction(Request $request)
     {
@@ -109,6 +121,8 @@ class QuestionController extends AbstractController
     /**
      * @Rest\View(serializerGroups={"question"})
      * @Rest\Patch("/question/{id}")
+     * @param Request $request
+     * @return FormInterface|JsonResponse
      */
     public function patchQuestionAction(Request $request)
     {
@@ -118,24 +132,23 @@ class QuestionController extends AbstractController
     /**
      * @param Request $request
      * @param $clearMissing
-     * @return \Symfony\Component\Form\FormInterface|JsonResponse
+     * @return FormInterface|JsonResponse
      */
     public function updateQuestion(Request $request, $clearMissing)
     {
-        $questionRepo = $this->getDoctrine()->getRepository(Question::class);
-        $question = $questionRepo->find($request->get('id'));
+        $question = $this->questionRepo->findOneQuestion($request->get('id'), $this->getUser()->getId());
 
         if (empty($question)) {
             return new JsonResponse(['message' => 'Question not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $form = $this->createForm(QuestionType::class, $question);
-        $form->submit($request->request->all(), $clearMissing); // Validation des données
+        $form = $this->createForm(QuestionType::class, $question[0]);
+        $form->submit($request->request->all(), $clearMissing);
 
         if ($form->isValid()) {
-            $this->em->merge($question);
+            $this->em->merge($question[0]);
             $this->em->flush();
-            return $question;
+            return $question[0];
         } else {
             return $form;
         }
@@ -150,9 +163,9 @@ class QuestionController extends AbstractController
      */
     public function removeQuestionAction(Request $request, QuestionRepository $questionRepo)
     {
-        $question = $questionRepo->find($request->get('id'));
+        $question = $questionRepo->findOneQuestion($request->get('id'), $this->getUser()->getId());
         if ($question) {
-            $this->em->remove($question);
+            $this->em->remove($question[0]);
             $this->em->flush();
         }
     }
