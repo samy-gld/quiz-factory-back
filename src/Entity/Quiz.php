@@ -56,7 +56,7 @@ class Quiz
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Invitation", mappedBy="quiz", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Invitation", mappedBy="quiz")
      */
     private $invitations;
 

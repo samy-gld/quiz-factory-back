@@ -32,4 +32,16 @@ class QuizRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function isFinalized(int $id)
+    {
+        $quiz = $this->createQueryBuilder('q')
+            ->select('q.status')
+            ->andWhere('q.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return isset($quiz) && $quiz["status"] === 'finalized';
+    }
 }

@@ -2,11 +2,11 @@
 App\Entity\Quiz:
     attributes:
         id:
-            groups: ['quizzes', 'quiz', 'question']
+            groups: ['quizzes', 'quiz', 'question', 'invitation']
         name:
-            groups: ['quizzes', 'quiz', 'question']
+            groups: ['quizzes', 'quiz', 'question', 'invitation']
         description:
-            groups: ['quizzes', 'quiz', 'question']
+            groups: ['quizzes', 'quiz', 'question', 'invitation']
         status:
             groups: ['quizzes', 'quiz', 'question']
         createdAt:
@@ -14,33 +14,33 @@ App\Entity\Quiz:
         lastUpdate:
             groups: ['quizzes', 'quiz', 'question']
         questions:
-            groups: ['quiz']
+            groups: ['quiz', 'invitation']
 
 App\Entity\Question:
     attributes:
         id:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation']
         label:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation']
         type:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation']
         position:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation']
         quiz:
             groups: []
         propositions:
-            groups: ['quiz', 'question']
+            groups: ['quiz', 'question', 'invitation']
 
 App\Entity\Proposition:
     attributes:
         id:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation', 'answer']
         label:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation', 'answer']
         wrightAnswer:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation', 'answer']
         position:
-            groups: ['quiz', 'question', 'proposition']
+            groups: ['quiz', 'question', 'proposition', 'invitation', 'answer']
         question:
             groups: []
 
@@ -52,3 +52,44 @@ App\Entity\User:
             groups: ['user']
         email:
             groups: ['user']
+
+App\Entity\Invitation:
+    attributes:
+        firstname:
+            groups: ['invitation']
+        lastname:
+            groups: ['invitation']
+        email:
+            groups: ['invitation']
+        token:
+            groups: ['invitation']
+        execution:
+            groups: ['invitation']
+        quiz:
+            groups: ['invitation']
+
+App\Entity\Execution:
+    attributes:
+        id:
+            groups: ['execution', 'invitation', 'answer']
+        started:
+            groups: ['execution', 'invitation']
+        finished:
+            groups: ['execution', 'invitation']
+        currentPosition:
+            groups: ['execution', 'invitation']
+        answers:
+            groups: ['execution']
+
+App\Entity\Answer:
+    attributes:
+        id:
+            groups: ['answer', 'execution']
+        questionPosition:
+            groups: ['answer', 'execution']
+        propositions:
+            groups: ['answer', 'execution']
+        success:
+            groups: ['answer', 'execution']
+        execution:
+            groups: ['answer']

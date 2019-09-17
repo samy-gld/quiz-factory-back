@@ -11,10 +11,9 @@ class Invitation
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
-    private $id;
+    private $token;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -29,11 +28,15 @@ class Invitation
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $token;
+    private $email;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Execution", inversedBy="invitation", cascade={"persist", "remove"})
+     */
+    private $execution;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Quiz", inversedBy="invitations")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $quiz;
 
@@ -74,6 +77,35 @@ class Invitation
     public function setToken(string $token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getExecution(): ?Execution
+    {
+        return $this->execution;
+    }
+
+    public function setExecution(Execution $execution): self
+    {
+        $this->execution = $execution;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $execution->getInvitation()) {
+            $execution->setInvitation($this);
+        }
 
         return $this;
     }

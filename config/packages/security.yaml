@@ -20,6 +20,14 @@ security:
             pattern: ^/api/confirm
             stateless: true
             anonymous: true
+        invitation:
+            pattern: ^/api/invitation/.+
+            stateless: true
+            anonymous: true
+        execution:
+            pattern: ^/api/execution
+            stateless: true
+            anonymous: true
         login:
             pattern: ^/api/login
             stateless: true
@@ -48,4 +56,6 @@ security:
         - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/confirm, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/invitation/.+, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/execution, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

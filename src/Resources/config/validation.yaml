@@ -53,3 +53,14 @@ App\Entity\User:
         email:
             - Email:
                 message: Not a valid email.
+
+App\Entity\Invitation:
+    properties:
+        email:
+            - Email:
+                  message: Not a valid email.
+
+App\Entity\Answer:
+    properties:
+        propositions:
+            - Valid: ~

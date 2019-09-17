@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="quizz-factory" uuid="64f8a1ff-d561-4676-97df-58fb36049e38">
+    <data-source name="quiz-factory" uuid="64f8a1ff-d561-4676-97df-58fb36049e38">
       <database-info product="MySQL" version="5.5.5-10.1.38-MariaDB-0+deb9u1" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.15 (Revision: 79a4336f140499bd22dd07f02b708e163844e3d5)" dbms="MARIADB" exact-version="10.1.38" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
