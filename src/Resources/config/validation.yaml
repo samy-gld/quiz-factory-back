@@ -33,6 +33,8 @@ App\Entity\Question:
         position:
             - NotNull: ~
             - Type: integer
+        propositions:
+            - Valid: ~
 
 App\Entity\Proposition:
     constraints:

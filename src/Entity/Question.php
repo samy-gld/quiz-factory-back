@@ -37,7 +37,12 @@ class Question
     private $quiz;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Proposition", mappedBy="question", orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToMany(
+     *     targetEntity="App\Entity\Proposition",
+     *     mappedBy="question",
+     *     orphanRemoval=true,
+     *     fetch="EAGER",
+     *     cascade={"persist"})
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private $propositions;

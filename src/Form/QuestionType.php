@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Proposition;
 use App\Entity\Question;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -21,7 +19,13 @@ class QuestionType extends AbstractType
             ->add('label', TextType::class, ['empty_data' => ''])
             ->add('type', TextType::class)
             ->add('position', IntegerType::class)
-            ->add('propositions', CollectionType::class, ['required' => false])
+            ->add('propositions', CollectionType::class, [
+                'required' => false,
+                'entry_type' => PropositionType::class,
+                'allow_add' => true,
+                'error_bubbling' => false,
+                'by_reference' => false
+            ])
         ;
     }
 
