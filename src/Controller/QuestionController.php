@@ -142,13 +142,15 @@ class QuestionController extends AbstractController
             return new JsonResponse(['message' => 'Question not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $form = $this->createForm(QuestionType::class, $question[0]);
+        $question = $question[0];
+        $form = $this->createForm(QuestionType::class, $question);
         $form->submit($request->request->all(), $clearMissing);
 
         if ($form->isValid()) {
-            $this->em->merge($question[0]);
+
+            $this->em->merge($question);
             $this->em->flush();
-            return $question[0];
+            return $question;
         } else {
             return $form;
         }

@@ -20,6 +20,7 @@ App\Entity\Quiz:
 App\Entity\Question:
     constraints:
         - App\Validator\Constraints\DisableQuizFinalized: ~
+        - App\Validator\Constraints\NumberOfPropositions: ~
     properties:
         label:
             - NotNull: ~

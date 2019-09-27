@@ -23,6 +23,7 @@ class QuestionType extends AbstractType
                 'required' => false,
                 'entry_type' => PropositionType::class,
                 'allow_add' => true,
+                'allow_delete' => true,
                 'error_bubbling' => false,
                 'by_reference' => false
             ])
