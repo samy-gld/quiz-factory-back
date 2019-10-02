@@ -44,7 +44,7 @@ App\Entity\Proposition:
         label:
             - Type: string
             - Length:
-                max: 150
+                max: 120
         wrightAnswer:
             - Type: bool
         position:

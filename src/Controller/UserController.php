@@ -75,7 +75,7 @@ class UserController extends AbstractController
                 ->subject('Confirmation d\'inscription à Quiz Factory')
                 ->htmlTemplate('emails/registration.html.twig')
                     ->context([
-                        'url' => $_ENV['FRONTEND'].'/confirm/'.$token,
+                        'url' => $_ENV['URL_FRONTEND'].'/confirm/'.$token,
                         'username' => $user->getUsername(),
                     ])
                 ;
