@@ -6,11 +6,10 @@ namespace App\Controller;
 
 use App\Entity\Execution;
 use App\Form\ExecutionType;
-use App\Repository\ExecutionRepository;
 use App\Repository\InvitationRepository;
 use App\Repository\QuizRepository;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -19,11 +18,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @property ObjectManager em
+ * @property EntityManagerInterface em
  */
 class ExecutionController extends AbstractController
 {
-    public function __construct(ObjectManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }

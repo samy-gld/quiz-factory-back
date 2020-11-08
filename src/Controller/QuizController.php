@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\Entity\Quiz;
 use App\Form\QuizType;
 use App\Repository\QuizRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class QuizController extends AbstractController
 {
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
     private $em;
     /**
@@ -30,10 +30,10 @@ class QuizController extends AbstractController
 
     /**
      * quizController constructor.
-     * @param ObjectManager $em
+     * @param EntityManagerInterface $em
      * @param QuizRepository $quizRepo
      */
-    public function __construct(ObjectManager $em, QuizRepository $quizRepo)
+    public function __construct(EntityManagerInterface $em, QuizRepository $quizRepo)
     {
         $this->em = $em;
         $this->quizRepo = $quizRepo;

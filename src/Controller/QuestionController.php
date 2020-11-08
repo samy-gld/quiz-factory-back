@@ -8,7 +8,7 @@ use App\Entity\Question;
 use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 class QuestionController extends AbstractController
 {
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
     private $em;
     /**
@@ -32,10 +32,10 @@ class QuestionController extends AbstractController
 
     /**
      * QuestionController constructor.
-     * @param ObjectManager $em
+     * @param EntityManagerInterface $em
      * @param QuestionRepository $questionRepo
      */
-    public function __construct(ObjectManager $em, QuestionRepository $questionRepo)
+    public function __construct(EntityManagerInterface $em, QuestionRepository $questionRepo)
     {
         $this->em = $em;
         $this->questionRepo = $questionRepo;

@@ -8,7 +8,7 @@ use App\Entity\Proposition;
 use App\Form\PropositionType;
 use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PropositionController extends AbstractController
 {
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
     private $em;
     /**
@@ -35,11 +35,11 @@ class PropositionController extends AbstractController
 
     /**
      * PropositionController constructor.
-     * @param ObjectManager $em
+     * @param EntityManagerInterface $em
      * @param PropositionRepository $propositionRepo
      * @param QuestionRepository $questionRepo
      */
-    public function __construct(ObjectManager $em, PropositionRepository $propositionRepo, QuestionRepository $questionRepo)
+    public function __construct(EntityManagerInterface $em, PropositionRepository $propositionRepo, QuestionRepository $questionRepo)
     {
         $this->em = $em;
         $this->propositionRepo = $propositionRepo;

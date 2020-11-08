@@ -8,8 +8,7 @@ use App\Entity\Invitation;
 use App\Form\InvitationType;
 use App\Repository\InvitationRepository;
 use App\Repository\QuizRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Request\ParamFetcher;
@@ -24,11 +23,11 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 
 /**
- * @property ObjectManager em
+ * @property EntityManagerInterface em
  */
 class InvitationController extends AbstractController
 {
-    public function __construct(ObjectManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }

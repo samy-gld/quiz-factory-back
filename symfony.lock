@@ -1,4 +1,7 @@
 {
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -78,6 +81,9 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
+    "doctrine/sql-formatter": {
+        "version": "1.1.1"
+    },
     "egulias/email-validator": {
         "version": "2.1.10"
     },
@@ -98,6 +104,15 @@
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "laminas/laminas-code": {
+        "version": "3.4.1"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.3.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.1.1"
     },
     "lcobucci/jwt": {
         "version": "3.3.1"
@@ -137,6 +152,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
+    },
+    "php": {
+        "version": "7.4"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -317,6 +335,9 @@
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
     },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.20.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
     },
@@ -472,6 +493,9 @@
     },
     "twig/twig": {
         "version": "v2.11.2"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.4.0"
